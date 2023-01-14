@@ -8,4 +8,4 @@
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-![Notion](https://www.notion.so/b507f6c94b404dd8aa106447b050e812)
+[doc](https://www.notion.so/b507f6c94b404dd8aa106447b050e812)
