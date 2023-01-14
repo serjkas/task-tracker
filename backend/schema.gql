@@ -4,13 +4,13 @@
 
 type User {
   """id of the user"""
-  user_id: String!
+  userId: String!
 
   """first name of the user"""
-  first_name: String!
+  firstName: String!
 
   """last name of the user"""
-  last_name: String!
+  lastName: String!
 
   """email of the user"""
   email: String!
@@ -19,15 +19,41 @@ type User {
   role: String!
 }
 
+type Task {
+  """id of the task"""
+  taskId: String!
+
+  """first name of the user"""
+  name: String!
+
+  """first name of the user"""
+  description: String
+
+  """first name of the user"""
+  status: ETaskStatus!
+}
+
+enum ETaskStatus {
+  ToDo
+  InProgress
+  Ready
+  Hold
+}
+
 type Query {
   users: [User!]!
   user(userId: String!): User!
+  tasks: [Task!]!
+  task(taskId: String!): Task!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(userId: String!): User!
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(taskId: String!): Task!
 }
 
 input CreateUserInput {
@@ -57,4 +83,27 @@ input UpdateUserInput {
   """role of the user"""
   role: String
   userId: String!
+}
+
+input CreateTaskInput {
+  """name of the task"""
+  name: String!
+
+  """name of the task"""
+  status: ETaskStatus!
+
+  """descrription of the task """
+  desription: String!
+}
+
+input UpdateTaskInput {
+  """name of the task"""
+  name: String
+
+  """name of the task"""
+  status: ETaskStatus
+
+  """descrription of the task """
+  desription: String
+  id: Int!
 }

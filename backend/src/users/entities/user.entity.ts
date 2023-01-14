@@ -4,25 +4,23 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  @Field(() => String, { name: 'user_id', description: 'id of the user' })
+  @PrimaryGeneratedColumn('uuid', { name: 'user_id' })
+  @Field(() => String, { description: 'id of the user' })
   userId: string;
-  @Column()
+  @Column({ name: 'first_name' })
   @Field(() => String, {
-    name: 'first_name',
     description: 'first name of the user',
   })
   firstName: string;
-  @Column()
+  @Column({ name: 'last_name' })
   @Field(() => String, {
-    name: 'last_name',
     description: 'last name of the user',
   })
   lastName: string;
   @Column()
-  @Field(() => String, { name: 'email', description: 'email of the user' })
+  @Field(() => String, { description: 'email of the user' })
   email: string;
   @Column({ nullable: true })
-  @Field(() => String, { name: 'role', description: 'role of the user' })
+  @Field(() => String, { description: 'role of the user' })
   role: string;
 }
