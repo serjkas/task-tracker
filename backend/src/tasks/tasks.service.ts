@@ -30,8 +30,18 @@ export class TasksService {
     return task;
   }
 
-  update(id: number, updateTaskInput: UpdateTaskInput) {
-    return `This action updates a #${id} task`;
+  async update(
+    taskId: string,
+    updateTaskInput: UpdateTaskInput,
+  ): Promise<Task> {
+    const task = await this.taskRepository.preload({
+      taskId: taskId,
+      ...updateTaskInput,
+    });
+    if (!task) {
+      throw new NotFoundException(`task #${taskId} not found`);
+    }
+    return this.taskRepository.save(task);
   }
 
   async remove(taskId: string): Promise<Task> {
